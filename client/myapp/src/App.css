@@ -1,0 +1,95 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: rgb(0, 121, 191);
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+
+.task-board-wrapper {
+  
+}
+.task-board {
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: #e2e4e6;
+  width: 200px;
+  margin: 20px;
+  padding: 20px;
+  float: left;
+}
+.task-board h2 {
+  font-weight: bold;
+}
+.task-board p {
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin: 10px 0 0;
+  font-size: 13px;
+  background: #fff;
+  padding: 10px;
+}
+.task-board-wrapper .placeholder, .task-board .add-card {
+  background: rgba(0,0,0,.12);
+  display: block;
+  border: 0;
+  color: #fff;
+  width: 200px;
+  padding: 5px;
+  float: left;
+  margin-top: 20px;
+  text-align: left;
+  padding: 10px 20px;
+}
+.task-board .add-card {
+  background: none;
+  font-size: 15px;
+  color: #838c91;
+  padding: 0;
+  margin: 30px 0 0;
+  text-decoration: none; 
+}
+.task-board .add-card:hover {
+  text-decoration: underline;
+}
+textarea {
+  width: 96%;
+  border: 0;
+  margin: 10px 0;
+}
+.add-button {
+  background: #5aac44;
+  color: #fff;
+  padding: 5px;
+  margin-right: 10px;
+}
