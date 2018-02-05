@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "immutability-helper": "^2.6.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.0"

@@ -87,9 +87,13 @@ textarea {
   border: 0;
   margin: 10px 0;
 }
-.add-button {
+.add-button, .cancel-button {
   background: #5aac44;
   color: #fff;
   padding: 5px;
   margin-right: 10px;
+}
+
+.floatL {
+  float: left;
 }

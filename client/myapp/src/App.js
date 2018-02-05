@@ -1,19 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import 'babel-polyfill';
 import './App.css';
 import AddtoCard from './component/addCard';
 import config from './config';
+import PropTypes from 'prop-types';
 
 const TaskComponent = (props) => {
   return(
-    <div className="task-board">
-      <h2>{props.taskHead}</h2>
-      {props.listItems.map((list) =>
-       <p key={list.taskName}>
-        {list.taskName}
-       </p>
-      )}
-      <AddtoCard {...props} />
+    <div className="task-board-wrapper clearfix">
+    {props.list.map((task, i) => 
+      <div className="task-board" key={i}>
+        <h2>{task.taskHead}</h2>
+        {task.listItems.map((list) =>
+        <p key={list.taskName}>
+          {list.taskName}
+        </p>
+        )}
+        <AddtoCard {...props}  task={task} index={i} 
+          isActive={props.activeIndex === i} 
+          onClick={(e) => { props.handleClick(i, e) }}  />
+      </div>
+    )}
+    <button type="button" className="placeholder">Add a list...</button>
     </div>
   )
 }
@@ -23,26 +31,35 @@ class App extends Component {
     super(props);
     this.state = {
       list: config.toDoList,
-      isAddToCardShow:false
+      activeIndex:null,
+      initVal: ''
     }
-    this.showAddToCard = this.showAddToCard.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount () {
     // need to add Api Call
   }
-  showAddToCard () {
+  handleClick  (idx, e) { 
+   idx = e.currentTarget.className === 'cancel-button' ? null : idx;
+   this.setState({ activeIndex: idx })
+  }
+  handleAdd (newList) {
+    this.state.list[newList.idx].listItems.splice(2, 0, newList);
     this.setState({
-      isAddToCardShow:true
+      list: this.state.list,
+      activeIndex:null
     });
   }
   render() {
+    const displayItems = this.state.list;
     return(
-      <div className="task-board-wrapper clearfix">
-          {this.state.list.map((task, i) => 
-            <TaskComponent {...task} key={i} showCard={this.state.isAddToCardShow} handleClick={this.showAddToCard} />
-          )}
-       <button type="button" className="placeholder">Add a list...</button>
-      </div>
+        <TaskComponent list={displayItems} 
+          handleAdd={this.handleAdd}
+          textVal={this.state.initVal}
+          activeIndex={this.state.activeIndex}
+          handleClick={this.handleClick}
+        />
     )
   }
 }
