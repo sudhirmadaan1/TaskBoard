@@ -19,7 +19,10 @@ class TaskComponent extends Component {
       renderDialogueData:list
     });
   }
-  hideModel() {
+  hideModel(list, callback, isUpdateItem) {
+    if(isUpdateItem) {
+      callback(list);
+    }
     this.setState({
       showDialogue:false
     })
@@ -46,7 +49,7 @@ class TaskComponent extends Component {
             data={this.state.renderDialogueData} 
             index={this.state.index}
             hideModel={this.hideModel}
-            updateList={(list) => {updateTask(list)}}
+            updateList={(list) => {this.hideModel(list, updateTask, true)}}
             date="2018-08-01"  />
       </div>
     )

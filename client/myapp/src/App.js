@@ -26,14 +26,22 @@ class App extends Component {
    this.setState({ activeIndex: idx })
   }
   handleAdd (newList) {
-    this.state.list[newList.idx].listItems.splice(2, 0, newList);
+    let listItem = this.state.list[newList.idx].listItems; 
+    listItem.splice(listItem.length, 0, newList);
     this.setState({
       list: this.state.list,
       activeIndex:null
     });
   }
   updateTask (list) {
-    console.log(list);
+    let taskList = this.state.list[list.idx].listItems;
+    let listItemIndex = this.state.list[list.idx].listItems.findIndex((newList) => newList.id === list.oldVal.id); 
+    taskList[listItemIndex]['taskName'] = list.newVal; 
+   
+    this.setState({
+      activeIndex:null,
+      list: this.state.list
+    });
   }
   render() {
     const displayItems = this.state.list;

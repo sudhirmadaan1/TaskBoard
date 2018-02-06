@@ -35,12 +35,11 @@ class Dialogue extends Component {
     });
   }
   saveData() {
-    let newObj = [];
-    newObj.push({
-      oldval:this.props.data,
+    let newObj = {
+      oldVal:this.props.data,
       newVal:this.state.inputVal,
       idx:this.props.index
-    })
+    };
     this.props.updateList(newObj);
   }
   render() {
