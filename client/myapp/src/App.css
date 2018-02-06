@@ -18,6 +18,17 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+@font-face {
+  font-family: 'fontello';
+  src: url('./fonts/fontello.eot?32947003');
+  src: url('./fonts/fontello.eot?32947003#iefix') format('embedded-opentype'),
+       url('./fonts/fontello.woff2?32947003') format('woff2'),
+       url('./fonts/fontello.woff?32947003') format('woff'),
+       url('./fonts/fontello.ttf?32947003') format('truetype'),
+       url('./fonts/fontello.svg?32947003#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 body {
   font-family: Arial, Helvetica, sans-serif;
   background: rgb(0, 121, 191);
@@ -51,13 +62,16 @@ body {
 .task-board h2 {
   font-weight: bold;
 }
-.task-board p {
+.task-board a {
   border-radius: 10px;
   border: 1px solid #ccc;
   margin: 10px 0 0;
   font-size: 13px;
   background: #fff;
   padding: 10px;
+  display: block;
+  text-decoration: none;
+  color: #000;
 }
 .task-board-wrapper .placeholder, .task-board .add-card {
   background: rgba(0,0,0,.12);
@@ -93,7 +107,77 @@ textarea {
   padding: 5px;
   margin-right: 10px;
 }
-
+.model-wrapper{
+  position: relative; 
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #000;
+  width: 400px;
+  display: block;
+  clear: both;
+  margin: 0 auto;
+}
+.model-wrapper h1 {
+  font-family: 24px;
+  background: cyan;
+  padding: 10px;
+}
+.model-wrapper textarea {
+  border-radius: 10px;
+  width: 70%;
+  border: 1px solid #ccc;
+  height: 70px;
+  margin-left: 15%;
+  color: #000;
+  padding-left: 10px;
+}
+.model-wrapper .calender {
+  display: block;
+  margin-top: 20px;
+  font-size: 15px;
+}
+.model-wrapper .button-wrapper {
+  display: block;
+  margin-top: 15px;
+  text-align: right
+}
+.model-wrapper .button-wrapper .cancel-dialogue {
+  background: none;
+  color: rgb(121, 112, 112);
+  font-size: 16px;
+  border: 0;
+  font-weight: bold;
+}
+.model-wrapper .button-wrapper .save-dialogue {
+  background: rgb(98, 69, 136);
+  color: #fff;
+  font-size: 16px;
+  border: 0;
+  font-weight: bold;
+  padding: 5px;
+  text-align: center;
+}
+.react-datepicker__input-container input {
+  background: none;
+  border: none;
+  position: absolute;
+  top: 30px;
+  outline-width: 0;
+  background: #ccc;
+  padding: 5px 10px;
+  width: 69px;
+}
 .floatL {
   float: left;
+}
+.font-icons {
+  font-family: "fontello";
+  display: inline-block;
+  text-decoration: inherit;
+  text-align: center;
+}
+.icon-calendar:before { 
+  content: '\e800';
+  font-size: 18px;
+  margin-right: 5px; 
 }

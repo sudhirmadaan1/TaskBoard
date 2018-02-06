@@ -30,7 +30,7 @@ class AddtoCard extends Component {
       <div>
         {!this.props.isActive && <a href="javscript:void(0)" className="add-card" onClick={this.props.onClick}>Add a card...</a>}
         {this.props.isActive && 
-        <form id="noter-save-form" method="POST">
+        <form method="POST">
           <textarea 
             onChange={this.onChange}
             value={this.state.value} />
