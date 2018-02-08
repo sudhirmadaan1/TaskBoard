@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "concurrently \"nodemon server/app.js --exec babel-node\" \"nodemon client/app.js --exec babel-node\"",
+    "client":"cd client/myapp/ && npm start",
+    "server": "nodemon server/app.js --exec babel-node",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

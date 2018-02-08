@@ -18,8 +18,17 @@ class App extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.updateTask = this.updateTask.bind(this);
   }
-  componentDidMount () {
-    // need to add Api Call
+  componentDidMount() {
+    this.callApi()
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  }
+  callApi = async () => {
+    const response = await fetch('/getData');
+    const body = await response.json();
+
+    if (response.status !== 200) throw Error(body.message);
+    return body;
   }
   handleClick  (idx, e) { 
    idx = e.currentTarget.className === 'cancel-button' ? null : idx;

@@ -17,8 +17,12 @@ app.use(bodyParser.json());
 // 	graphiql: true
 // }));
 
-app.get('/', (req, res) => {
-	res.send('Hello, I am up and running');
+app.get('/getData', (req, res) => {
+	res.send({ express: 'Hello From Express' });
+});
+
+app.get('/api/hello', (req, res) => {
+  res.send({ express: 'Hello From Express' });
 });
 
 app.listen(config.PORT, () => {
