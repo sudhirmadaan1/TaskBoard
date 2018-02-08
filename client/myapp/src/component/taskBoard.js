@@ -45,12 +45,12 @@ class TaskComponent extends Component {
         </div>
       )}
       <button type="button" className="placeholder">Add a list...</button>
-      <Dialogue showDialogue={this.state.showDialogue} 
+      {this.state.showDialogue ? <Dialogue showDialogue={this.state.showDialogue} 
             data={this.state.renderDialogueData} 
             index={this.state.index}
             hideModel={this.hideModel}
             updateList={(list) => {this.hideModel(list, updateTask, true)}}
-            date="2018-08-01"  />
+            date="2018-08-01"  />: null}
       </div>
     )
   }

@@ -9,20 +9,12 @@ class Dialogue extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputVal: '',
-      startDate: moment()
+      inputVal: props.data.taskName,
+      startDate: moment(this.props.date)
     }
     this.handleChange = this.handleChange.bind(this);
     this.onChange = this.onChange.bind(this);
     this.saveData = this.saveData.bind(this);
-  }
-  componentWillReceiveProps() {
-    setTimeout(() => {
-      this.setState({
-        inputVal:this.props.data.taskName,
-        startDate:moment(this.props.date)
-      })
-    },0);
   }
   handleChange(date) {
     this.setState({

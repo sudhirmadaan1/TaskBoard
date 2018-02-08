@@ -45,6 +45,7 @@ class App extends Component {
   }
   render() {
     const displayItems = this.state.list;
+    console.log(displayItems);
     return(
         <TaskComponent list={displayItems} 
           handleAdd={this.handleAdd}
