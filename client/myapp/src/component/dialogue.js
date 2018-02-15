@@ -9,7 +9,7 @@ class Dialogue extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputVal: props.data.taskName,
+      inputVal: props.data['listItems'][props.index].taskName,
       startDate: moment(this.props.date)
     }
     this.handleChange = this.handleChange.bind(this);
@@ -27,12 +27,11 @@ class Dialogue extends Component {
     });
   }
   saveData() {
-    let newObj = {
-      oldVal:this.props.data,
-      newVal:this.state.inputVal,
-      idx:this.props.index
-    };
-    this.props.updateList(newObj);
+    let listData = JSON.parse(JSON.stringify(this.props.data));
+    // let newVal = [...this.props.data.listItems.slice(0, this.props.index), {...this.props.data.listItems[this.props.index], ['taskName']: this.state.inputVal}]
+    // let newVales = [...this.props.data.listItems, {...this.props.data.listItems[this.props.index], ['taskName']: this.state.inputVal}]
+    listData.listItems[this.props.index].taskName = this.state.inputVal; 
+    this.props.updateList(listData, this.props.itemIdx);
   }
   render() {
     return(

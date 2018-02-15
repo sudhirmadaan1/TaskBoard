@@ -24,7 +24,7 @@ class AddtoCard extends Component {
   }
   render() {
     const getIndex = this.props.list.findIndex((list) => list.id === this.props.task.id);
-    const addUpdatedTask = addTask(this.props.task.listItems, this.state.value, getIndex);
+    const addUpdatedTask = addTask(this.props.task, this.state.value, getIndex);
     const handleAdd =  partial(this.props.handleAdd, addUpdatedTask);
     return(
       <div>

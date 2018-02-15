@@ -50,6 +50,13 @@ body {
 .task-board-wrapper {
   
 }
+.loading {
+  text-align:center;
+  margin:0 auto;
+  font-size: 20px;
+  color:#fff;
+  padding-top:30px;
+}
 .task-board {
   border-radius: 10px;
   border: 1px solid #ccc;

@@ -12,16 +12,17 @@ class TaskComponent extends Component {
     this.showModel = this.showModel.bind(this);
     this.hideModel = this.hideModel.bind(this);
   }
-  showModel(list,idx) {
+  showModel(list,idx, itemIdx) {
     this.setState({
       showDialogue:true,
       index:idx,
+      itemIdx:itemIdx,
       renderDialogueData:list
     });
   }
-  hideModel(list, callback, isUpdateItem) {
+  hideModel(list, callback, isUpdateItem, itmIdx) {
     if(isUpdateItem) {
-      callback(list);
+      callback(list, itmIdx);
     }
     this.setState({
       showDialogue:false
@@ -31,11 +32,11 @@ class TaskComponent extends Component {
     const updateTask = this.props.updateTask;
     return(
       <div className="task-board-wrapper clearfix">
-      {this.props.list.map((task, i) => 
+      {this.props.list && this.props.list.map((task, i) => 
         <div className="task-board" key={i}>
           <h2>{task.taskHead}</h2>
-          {task.listItems.map((list) =>
-          <a href="javascript:void(0)" key={list.taskName} onClick={() => { this.showModel(list, i) }}>
+          {task.listItems.map((list, idx) =>
+          <a href="javascript:void(0)" key={list.taskName} onClick={() => { this.showModel(task, idx, i) }}>
             {list.taskName}
           </a>
           )}
@@ -45,12 +46,13 @@ class TaskComponent extends Component {
         </div>
       )}
       <button type="button" className="placeholder">Add a list...</button>
-      {this.state.showDialogue ? <Dialogue showDialogue={this.state.showDialogue} 
-            data={this.state.renderDialogueData} 
+      {this.state.showDialogue && <Dialogue showDialogue={this.state.showDialogue} 
+            data={this.state.renderDialogueData}
+            itemIdx={this.state.itemIdx} 
             index={this.state.index}
             hideModel={this.hideModel}
-            updateList={(list) => {this.hideModel(list, updateTask, true)}}
-            date="2018-08-01"  />: null}
+            updateList={(list, itmIdx) => {this.hideModel(list, updateTask, true, itmIdx)}}
+            date="2018-08-01"  />}
       </div>
     )
   }

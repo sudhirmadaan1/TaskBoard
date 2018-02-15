@@ -2,27 +2,25 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import GraphqlHTTP from 'express-graphql';
 import session from 'express-session';
-
+import Schema from './model'
 const config = require('./config.js');
-// const swaggerDocument = require('./swagger.json');
-// import { publishGlobalEvents, subscribeGlobalEvents } from './utils/pub-sub';
 
 const app = express();
 // Setup bodyParsing middleware
 app.use(bodyParser.json());
 
-// app.use('/graphql', GraphqlHTTP({
-// 	schema: Schema,
-// 	pretty: true,
-// 	graphiql: true
-// }));
+app.use('/graphql', GraphqlHTTP({
+	schema: Schema,
+	pretty: true,
+	graphiql: true
+}));
 
 app.get('/getData', (req, res) => {
-	res.send({ express: 'Hello From Express' });
+	res.send({ toDoList: config.toDoList});
 });
 
 app.get('/api/hello', (req, res) => {
-  res.send({ express: 'Hello From Express' });
+  res.send({ toDoList: config.toDoList});
 });
 
 app.listen(config.PORT, () => {
