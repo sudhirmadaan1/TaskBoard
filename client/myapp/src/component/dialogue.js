@@ -28,8 +28,6 @@ class Dialogue extends Component {
   }
   saveData() {
     let listData = JSON.parse(JSON.stringify(this.props.data));
-    // let newVal = [...this.props.data.listItems.slice(0, this.props.index), {...this.props.data.listItems[this.props.index], ['taskName']: this.state.inputVal}]
-    // let newVales = [...this.props.data.listItems, {...this.props.data.listItems[this.props.index], ['taskName']: this.state.inputVal}]
     listData.listItems[this.props.index].taskName = this.state.inputVal; 
     this.props.updateList(listData, this.props.itemIdx);
   }
