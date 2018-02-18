@@ -1,4 +1,4 @@
-export const addTask = (list, newVal, idx) => {
+export const addNewTask = (list, newVal, idx) => {
   return {
     idx:idx,
     newValues: {

@@ -1,5 +1,5 @@
 let config = {
-  PORT: 5000,
+  PORT: 4000,
   MONGO: {
     PROTOCOL: "mongodb://",
     DOMAIN: "localhost",
@@ -43,4 +43,4 @@ let config = {
   }]
 }
 
-module.exports = config
+module.exports = config;

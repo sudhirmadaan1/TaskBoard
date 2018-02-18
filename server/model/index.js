@@ -5,9 +5,9 @@ import boardSchema from './task/index';
 const type = [
   boardSchema.typeDefs
 ];
-
 const resolvers = [
-  boardSchema.resolvers.Query
+  boardSchema.resolvers.Query,
+  boardSchema.resolvers.Mutation
 ]
 
 const RootQuery = mergeTypes(type);
