@@ -1,13 +1,15 @@
-export const addNewTask = (list, newVal, idx) => {
+export const addNewTaskHelper = (list, newVal, idx) => {
+  const newId = Math.round(Math.random() * 2000); 
   return {
     idx:idx,
+    newAddedId: newId,
     newValues: {
       id:list.id,
       taskHead:list.taskHead,
       listItems:[
         ...list.listItems,
         {
-          id:3,
+          id:newId,
           taskName:newVal
         }
       ]

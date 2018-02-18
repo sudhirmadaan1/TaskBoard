@@ -6,7 +6,8 @@ input addListItems {
 type Mutation {
   AddupdateTaskBoard(
     taskHead: String!
-    listItems:[addListItems]
+    listItems: [addListItems]
+    isAddMutation: String
   ):TaskBoard
 }
 `;

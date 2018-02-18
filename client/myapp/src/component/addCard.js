@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import {addNewTask} from '../component/helper';
+import {addNewTaskHelper} from '../component/helper';
 import PropTypes from 'prop-types';
 import {partial} from '../lib/utils';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+
 
 class AddtoCard extends Component {
   constructor(props) {
@@ -15,16 +18,33 @@ class AddtoCard extends Component {
   onChange (e) {
     this.setState({value: e.target.value});
   }
-  addNewTask (e, callback) {
+  addNewTask (e, newListId, callback) {
     e.preventDefault();
     this.setState({
       value:''
     });
-    callback();
+    const isAddMutation = true;
+    const { taskHead, listItems } = this.props.task;
+    const task = {
+      taskHead:taskHead, 
+      id: newListId, 
+      taskName:this.state.value, 
+      isAddMutation: 'ADD_VALUE'
+    }
+    this.props.mutate({variables: { 
+      taskHead:task.taskHead, 
+      id: task.id, 
+      taskName: task.taskName, 
+      isAddMutation: task.isAddMutation  
+    }}).then(({data}) => {
+      callback();
+    }).catch((error) => {
+      console.log(`There is an error. ${error}`)
+    });
   }
   render() {
     const getIndex = this.props.list.findIndex((list) => list.id === this.props.task.id);
-    const addUpdatedTask = addNewTask(this.props.task, this.state.value, getIndex);
+    const addUpdatedTask = addNewTaskHelper(this.props.task, this.state.value, getIndex);
     const handleAdd =  partial(this.props.handleAdd, addUpdatedTask);
     return(
       <div>
@@ -35,7 +55,7 @@ class AddtoCard extends Component {
             onChange={this.onChange}
             value={this.state.value} />
           <button type="button" className="add-button" 
-            onClick={(e) => { this.addTask(e, handleAdd) }}>Add</button>
+            onClick={(e) => { this.addNewTask(e, addUpdatedTask.newAddedId, handleAdd) }}>Add</button>
           <button type="button" className="cancel-button" onClick={this.props.onClick} >Cancel</button>
         </form>}
       </div>
@@ -45,7 +65,28 @@ class AddtoCard extends Component {
 
 AddtoCard.propTypes = {
   handleAdd:PropTypes.func.isRequired,
+  mutate: PropTypes.func.isRequired,
   textVal:PropTypes.string.isRequired
 }
 
-export default AddtoCard;
+const ADD_TASK_BOARD = gql`
+  mutation AddUpdateBoard($taskHead: String!, $id:Int, $taskName: String!, $isAddMutation: String!) {
+    AddupdateTaskBoard(
+      taskHead: $taskHead, 
+      isAddMutation: $isAddMutation,
+      listItems: { 
+          id: $id, taskName: $taskName  
+      }){
+        id
+        taskHead
+        listItems {
+          id
+          taskName
+        }
+      }
+  }
+`;
+
+const AddItemWithMutation = graphql(ADD_TASK_BOARD)(AddtoCard);
+
+export default AddItemWithMutation;

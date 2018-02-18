@@ -30,17 +30,16 @@ class Dialogue extends Component {
   }
   saveData() {
     let listData = JSON.parse(JSON.stringify(this.props.data));
-    let taskHead = listData.taskHead;
-    let id = listData.listItems[this.props.index].id;
-    let taskName = this.state.inputVal;
-    console.log(taskName);
+    const taskHead = listData.taskHead;
+    const id = listData.listItems[this.props.index].id;
+    const taskName = this.state.inputVal;
+    
     listData.listItems[this.props.index].taskName = this.state.inputVal;
     this.props.mutate({variables: { taskHead, id, taskName  }}).then(({data}) => {
-        console.log(`Data updated Successfully`);      
+      this.props.updateList(listData, this.props.itemIdx);
     }).catch((error) => {
       console.log(`There is an error. ${error}`)
     });
-    this.props.updateList(listData, this.props.itemIdx);
   }
   render() {
     return(
