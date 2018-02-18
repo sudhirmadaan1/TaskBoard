@@ -4,8 +4,7 @@ input addListItems {
   taskName:String!
 }
 type Mutation {
-  addTask(
-    id: Int
+  AddupdateTaskBoard(
     taskHead: String!
     listItems:[addListItems]
   ):TaskBoard

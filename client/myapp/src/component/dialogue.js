@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment';
@@ -28,7 +30,16 @@ class Dialogue extends Component {
   }
   saveData() {
     let listData = JSON.parse(JSON.stringify(this.props.data));
-    listData.listItems[this.props.index].taskName = this.state.inputVal; 
+    let taskHead = listData.taskHead;
+    let id = listData.listItems[this.props.index].id;
+    let taskName = this.state.inputVal;
+    console.log(taskName);
+    listData.listItems[this.props.index].taskName = this.state.inputVal;
+    this.props.mutate({variables: { taskHead, id, taskName  }}).then(({data}) => {
+        console.log(`Data updated Successfully`);      
+    }).catch((error) => {
+      console.log(`There is an error. ${error}`)
+    });
     this.props.updateList(listData, this.props.itemIdx);
   }
   render() {
@@ -60,8 +71,25 @@ class Dialogue extends Component {
 
 Dialogue.propTypes = {
   showDialogue:PropTypes.bool.isRequired,
+  mutate: PropTypes.func.isRequired,
   hideModel:PropTypes.func.isRequired,
   data:PropTypes.object.isRequired
 }
 
-export default Dialogue; 
+const UPDATE_TASK_BOARD = gql`
+  mutation AddUpdateBoard($taskHead: String!, $id:Int, $taskName: String!) {
+    AddupdateTaskBoard(taskHead: $taskHead, listItems: { id: $id, taskName: $taskName }) {
+      id
+      taskHead
+      listItems {
+        id
+        taskName
+      }
+    }
+  }
+`;
+
+const UpdateItemWithMutation = graphql(UPDATE_TASK_BOARD)(Dialogue);
+
+
+export default UpdateItemWithMutation; 

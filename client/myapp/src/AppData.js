@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import 'babel-polyfill';
 import './App.css';
-import config from './config';
 import PropTypes from 'prop-types';
 import TaskComponent from './component/taskBoard';
 import { graphql } from 'react-apollo';
@@ -66,7 +65,7 @@ class AppData extends Component {
   }
 }
 
-export const GetTaskBoard = gql`
+export const GET_TASK_BOARD = gql`
   query GetTaskBoard {
     getTaskBoard {
       id
@@ -80,6 +79,4 @@ export const GetTaskBoard = gql`
 `;
 
 
-export default graphql(GetTaskBoard, {
-  options: { fetchPolicy: 'network-only' }
-})(AppData);
+export default graphql(GET_TASK_BOARD)(AppData);

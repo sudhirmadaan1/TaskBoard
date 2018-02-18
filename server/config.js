@@ -21,11 +21,11 @@ let config = {
     "id":2,
     "taskHead": "Doing",
     "listItems": [{
-      "id":1,
+      "id":3,
       "taskName": "Learning React",
     },
     {
-      "id":2,
+      "id":4,
       "taskName": "Learn Graphql",
     }]
   },
@@ -33,11 +33,11 @@ let config = {
     "id":3,
     "taskHead": "Done",
     "listItems": [{
-      "id":1,
+      "id":5,
       "taskName": "Redux Training",
     },
     {
-      "id":2,
+      "id":6,
       "taskName": "Node Training",
     }]
   }]
