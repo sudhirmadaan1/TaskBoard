@@ -46,7 +46,8 @@ class TaskComponent extends Component {
             onClick={(e) => { this.props.handleClick(i, e) }}  />
         </div>
       )};
-      <Fragment>
+
+      {this.props.showAddList && <Fragment>
         <form>
           <fieldset>
               <legend><strong>Add List:</strong></legend>
@@ -57,7 +58,7 @@ class TaskComponent extends Component {
               }} /></label>
           </fieldset>
         </form>
-      </Fragment>
+      </Fragment> }
       <button type="button" className="placeholder" onClick={() => {
         this.props.addList(this.state.listVal);
       }}>Add a list...</button>

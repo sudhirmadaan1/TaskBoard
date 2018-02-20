@@ -12,7 +12,8 @@ class AppData extends Component {
     this.state = {
       list: null,
       activeIndex:null,
-      initVal: ''
+      initVal: '',
+      showAddList: true
     }
     this.handleAdd = this.handleAdd.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -75,6 +76,7 @@ class AppData extends Component {
             handleClick={this.handleClick}
             updateTask={this.updateTask}
             addList={this.addNewList}
+            showAddList={this.state.showAddList}
           />
       )
     }
