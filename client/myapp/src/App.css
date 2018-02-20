@@ -188,3 +188,15 @@ textarea {
   font-size: 18px;
   margin-right: 5px; 
 }
+
+fieldset {
+  font-size:14px;
+  color: #fff;
+  width: 200px;
+  border: 1px solid #fff;
+  padding: 20px;
+}
+fieldset label  input{
+  margin-top: 10px;
+  padding: 10px;
+}

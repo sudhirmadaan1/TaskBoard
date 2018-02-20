@@ -7,6 +7,7 @@ class TaskComponent extends Component {
     super(props);
     this.state = {
       showDialogue: false,
+      listVal:'',
       renderDialogueData:{}
     }
     this.showModel = this.showModel.bind(this);
@@ -35,7 +36,7 @@ class TaskComponent extends Component {
       {this.props.list && this.props.list.map((task, i) => 
         <div className="task-board" key={i}>
           <h2>{task.taskHead}</h2>
-          {task.listItems.map((list, idx) =>
+          {task.listItems && task.listItems.map((list, idx) =>
           <a href="javascript:void(0)" key={list.taskName} onClick={() => { this.showModel(task, idx, i) }}>
             {list.taskName}
           </a>
@@ -44,8 +45,22 @@ class TaskComponent extends Component {
             isActive={this.props.activeIndex === i} 
             onClick={(e) => { this.props.handleClick(i, e) }}  />
         </div>
-      )}
-      <button type="button" className="placeholder">Add a list...</button>
+      )};
+      <Fragment>
+        <form>
+          <fieldset>
+              <legend><strong>Add List:</strong></legend>
+              <label>Task Name: <input type="text" onChange={(e) => {
+                this.setState({
+                  listVal:e.target.value
+                });
+              }} /></label>
+          </fieldset>
+        </form>
+      </Fragment>
+      <button type="button" className="placeholder" onClick={() => {
+        this.props.addList(this.state.listVal);
+      }}>Add a list...</button>
       {this.state.showDialogue && <Dialogue showDialogue={this.state.showDialogue} 
             data={this.state.renderDialogueData}
             itemIdx={this.state.itemIdx} 

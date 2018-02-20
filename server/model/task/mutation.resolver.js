@@ -12,6 +12,10 @@ export default {
         config.toDoList[listIdx].listItems[lstItmIdx]['taskName'] = args.listItems[0].taskName;
       }
       return args;
+    },
+    AddNewList: (_, args) => {
+      config.toDoList.push(args);
+      return args;
     }
   }
 }
