@@ -14,6 +14,7 @@ export default {
       return args;
     },
     AddNewList: (_, args) => {
+      args['listItems'] = [];
       config.toDoList.push(args);
       return args;
     }
