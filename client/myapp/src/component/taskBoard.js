@@ -33,6 +33,7 @@ class TaskComponent extends Component {
     const updateTask = this.props.updateTask;
     return(
       <div className="task-board-wrapper clearfix">
+      <div class="flex-box">
       {this.props.list && this.props.list.map((task, i) => 
         <div className="task-board" key={i}>
           <h2>{task.taskHead}</h2>
@@ -46,6 +47,7 @@ class TaskComponent extends Component {
             onClick={(e) => { this.props.handleClick(i, e) }}  />
         </div>
       )};
+      
 
       {this.props.showAddList && <Fragment>
         <form>
@@ -57,11 +59,12 @@ class TaskComponent extends Component {
                 });
               }} /></label>
           </fieldset>
+          <button type="button" className="placeholder" onClick={() => {
+            this.props.addList(this.state.listVal);
+          }}>Add a list...</button>
         </form>
       </Fragment> }
-      <button type="button" className="placeholder" onClick={() => {
-        this.props.addList(this.state.listVal);
-      }}>Add a list...</button>
+      </div>
       {this.state.showDialogue && <Dialogue showDialogue={this.state.showDialogue} 
             data={this.state.renderDialogueData}
             itemIdx={this.state.itemIdx} 

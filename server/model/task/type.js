@@ -1,10 +1,10 @@
 export default `
 type listItems {
-  id: Int
+  listId: String
   taskName:String!
 }
 type TaskBoard {
-  id: Int
+  taskId: String
   taskHead: String!
   listItems:[listItems]
 }

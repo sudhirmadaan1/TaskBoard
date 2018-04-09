@@ -4,6 +4,7 @@ import GraphqlHTTP from 'express-graphql';
 import session from 'express-session';
 import Schema from './model'
 const config = require('./config.js');
+const mongoConn = require('./mongoConnection')();
 
 const app = express();
 // Setup bodyParsing middleware
@@ -26,13 +27,3 @@ app.get('/api/hello', (req, res) => {
 app.listen(config.PORT, () => {
 	console.log(`server listen at ${config.PORT}`);
 });
-
-// db(`${config.MONGO.PROTOCOL}${config.MONGO.DOMAIN}${config.MONGO.PORT}${config.MONGO.BUCKET}`, function(err){
-// 	if(err){
-// 		console.log("Unable to connect to mongoDB....");
-// 	}else{
-// 		app.listen(config.PORT, () => {
-// 			console.log(`server listen at ${config.PORT}`);
-// 		});
-// 	}
-// });

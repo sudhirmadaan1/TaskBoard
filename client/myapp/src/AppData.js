@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import 'babel-polyfill';
 import './App.css';
 import PropTypes from 'prop-types';
@@ -22,6 +22,7 @@ class AppData extends Component {
   }
   componentDidMount() {
     setTimeout(() => {
+      console.log(this.props.listData);
       this.setState({
         list:this.props.listData.getTaskBoard,
         addList: this.props.addList
@@ -33,6 +34,7 @@ class AppData extends Component {
    this.setState({ activeIndex: idx })
   }
   handleAdd (updatedData) {
+    console.log(updatedData.idx);
     let updatedList = [...this.state.list.slice(0, updatedData.idx), updatedData.newValues, ...this.state.list.slice(updatedData.idx+1)]
     this.setState({
       list: updatedList,
@@ -49,8 +51,7 @@ class AppData extends Component {
   }
   addNewList(listVal) {
     const taskHead = listVal;
-    const id = Math.round(Math.random() * 2000);
-    this.props.addList({variables: { id, taskHead }}).then((list) => {
+    this.props.addList({variables: { taskHead }}).then((list) => {
       const _newData = list.data.AddNewList;
       const newObj = {id: _newData.id, taskHead:_newData.taskHead, listItems:[]} 
       this.setState({
@@ -86,10 +87,10 @@ class AppData extends Component {
 const GET_TASK_BOARD = gql`
   query GetTaskBoard {
     getTaskBoard {
-      id
+      taskId
       taskHead
       listItems {
-        id
+        listId
         taskName
       }
     }
@@ -97,9 +98,9 @@ const GET_TASK_BOARD = gql`
 `;
 
 const ADD_LIST = gql`
-  mutation AddNewList($id: Int!, $taskHead: String!) {
-    AddNewList(id: $id, taskHead: $taskHead) {
-      id
+  mutation AddNewList($taskHead: String!) {
+    AddNewList(taskHead: $taskHead) {
+      taskId
       taskHead
     }
   }

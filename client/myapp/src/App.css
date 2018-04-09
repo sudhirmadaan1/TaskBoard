@@ -47,8 +47,8 @@ body {
 * html .clearfix { height: 1%; }
 .clearfix { display: block; }
 
-.task-board-wrapper {
-  
+.flex-box {
+  display: flex;
 }
 .loading {
   text-align:center;
@@ -188,7 +188,9 @@ textarea {
   font-size: 18px;
   margin-right: 5px; 
 }
-
+form {
+  margin-top: 20px;
+}
 fieldset {
   font-size:14px;
   color: #fff;

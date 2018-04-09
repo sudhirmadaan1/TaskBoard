@@ -18,7 +18,7 @@ class AddtoCard extends Component {
   onChange (e) {
     this.setState({value: e.target.value});
   }
-  addNewTask (e, newListId, callback) {
+  addNewTask (e, callback) {
     e.preventDefault();
     this.setState({
       value:''
@@ -27,13 +27,13 @@ class AddtoCard extends Component {
     const { taskHead, listItems } = this.props.task;
     const task = {
       taskHead:taskHead, 
-      id: newListId, 
+      // id: newListId, 
       taskName:this.state.value, 
       isAddMutation: 'ADD_VALUE'
     }
     this.props.mutate({variables: { 
       taskHead:task.taskHead, 
-      id: task.id, 
+      // id: task.id, 
       taskName: task.taskName, 
       isAddMutation: task.isAddMutation  
     }}).then(({data}) => {
@@ -43,7 +43,7 @@ class AddtoCard extends Component {
     });
   }
   render() {
-    const getIndex = this.props.list.findIndex((list) => list.id === this.props.task.id);
+    const getIndex = this.props.list.findIndex((list) => list.taskId === this.props.task.taskId);
     const addUpdatedTask = addNewTaskHelper(this.props.task, this.state.value, getIndex);
     const handleAdd =  partial(this.props.handleAdd, addUpdatedTask);
     return(
@@ -55,7 +55,7 @@ class AddtoCard extends Component {
             onChange={this.onChange}
             value={this.state.value} />
           <button type="button" className="add-button" 
-            onClick={(e) => { this.addNewTask(e, addUpdatedTask.newAddedId, handleAdd) }}>Add</button>
+            onClick={(e) => { this.addNewTask(e, handleAdd) }}>Add</button>
           <button type="button" className="cancel-button" onClick={this.props.onClick} >Cancel</button>
         </form>}
       </div>
@@ -70,17 +70,17 @@ AddtoCard.propTypes = {
 }
 
 const ADD_TASK_BOARD = gql`
-  mutation AddUpdateBoard($taskHead: String!, $id:Int, $taskName: String!, $isAddMutation: String!) {
+  mutation AddUpdateBoard($taskHead: String!, $taskName: String!, $isAddMutation: String!) {
     AddupdateTaskBoard(
       taskHead: $taskHead, 
       isAddMutation: $isAddMutation,
       listItems: { 
-          id: $id, taskName: $taskName  
+          taskName: $taskName  
       }){
-        id
+        taskId
         taskHead
         listItems {
-          id
+          listId
           taskName
         }
       }

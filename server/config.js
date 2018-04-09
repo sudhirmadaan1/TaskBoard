@@ -1,10 +1,7 @@
 let config = {
   PORT: 4000,
   MONGO: {
-    PROTOCOL: "mongodb://",
-    DOMAIN: "localhost",
-    PORT: ":27017",
-    BUCKET: "/gameBucket"
+    MONGO_URL: (process.env.MONGO_URL || 'mongodb://localhost:27017/kanbanBoard')
   },
   toDoList: [{
     "id":1,
