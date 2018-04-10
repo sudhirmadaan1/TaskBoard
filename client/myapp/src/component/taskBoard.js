@@ -33,12 +33,12 @@ class TaskComponent extends Component {
     const updateTask = this.props.updateTask;
     return(
       <div className="task-board-wrapper clearfix">
-      <div class="flex-box">
+      <div className="flex-box">
       {this.props.list && this.props.list.map((task, i) => 
         <div className="task-board" key={i}>
           <h2>{task.taskHead}</h2>
           {task.listItems && task.listItems.map((list, idx) =>
-          <a href="javascript:void(0)" key={list.taskName} onClick={() => { this.showModel(task, idx, i) }}>
+          <a href="javascript:void(0)" key={idx} onClick={() => {  this.showModel(task, idx, i) }}>
             {list.taskName}
           </a>
           )}

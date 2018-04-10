@@ -4,7 +4,7 @@ export const addNewTaskHelper = (list, newVal, idx) => {
     idx:idx,
     // newAddedId: newId,
     newValues: {
-      taskId:list.id,
+      taskId:list.taskId,
       taskHead:list.taskHead,
       listItems:list.listItems ? [
         ...list.listItems,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import DatePicker from 'react-datepicker';
+// import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment';
 import PropTypes from 'prop-types';
@@ -31,11 +31,11 @@ class Dialogue extends Component {
   saveData() {
     let listData = JSON.parse(JSON.stringify(this.props.data));
     const taskHead = listData.taskHead;
-    const id = listData.listItems[this.props.index].id;
+    const listId = listData.listItems[this.props.index].listId;
     const taskName = this.state.inputVal;
     
     listData.listItems[this.props.index].taskName = this.state.inputVal;
-    this.props.mutate({variables: { taskHead, id, taskName  }}).then(({data}) => {
+    this.props.mutate({variables: { taskHead, listId, taskName  }}).then(({data}) => {
       this.props.updateList(listData, this.props.itemIdx);
     }).catch((error) => {
       console.log(`There is an error. ${error}`)
@@ -50,13 +50,13 @@ class Dialogue extends Component {
             <textarea 
                   value={this.state.inputVal}
                   onChange={this.onChange} />
-            <span className="calender">
+            {/* {<span className="calender">
               <DatePicker
               selected={this.state.startDate}
               onChange={this.handleChange} />
               <i className="font-icons icon-calendar" />
               Due Date
-            </span>
+            </span>} */}
             <div className="button-wrapper">
               <button type="button" className="cancel-dialogue" onClick={this.props.hideModel}>Cancel</button>
               <button type="button" className="save-dialogue" onClick={this.saveData}>Save</button>
@@ -76,12 +76,12 @@ Dialogue.propTypes = {
 }
 
 const UPDATE_TASK_BOARD = gql`
-  mutation AddUpdateBoard($taskHead: String!, $id:Int, $taskName: String!) {
-    AddupdateTaskBoard(taskHead: $taskHead, listItems: { id: $id, taskName: $taskName }) {
-      id
+  mutation AddUpdateBoard($taskHead: String!, $listId:String, $taskName: String!) {
+    AddupdateTaskBoard(taskHead: $taskHead, listItems: { listId: $listId, taskName: $taskName }) {
+      taskId
       taskHead
       listItems {
-        id
+        listId
         taskName
       }
     }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'babel-polyfill';
 import './App.css';
-import PropTypes from 'prop-types';
 import TaskComponent from './component/taskBoard';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -22,7 +21,6 @@ class AppData extends Component {
   }
   componentDidMount() {
     setTimeout(() => {
-      console.log(this.props.listData);
       this.setState({
         list:this.props.listData.getTaskBoard,
         addList: this.props.addList
@@ -34,7 +32,6 @@ class AppData extends Component {
    this.setState({ activeIndex: idx })
   }
   handleAdd (updatedData) {
-    console.log(updatedData.idx);
     let updatedList = [...this.state.list.slice(0, updatedData.idx), updatedData.newValues, ...this.state.list.slice(updatedData.idx+1)]
     this.setState({
       list: updatedList,

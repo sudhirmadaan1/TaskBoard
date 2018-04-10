@@ -23,8 +23,8 @@ class AddtoCard extends Component {
     this.setState({
       value:''
     });
-    const isAddMutation = true;
-    const { taskHead, listItems } = this.props.task;
+    // const isAddMutation = true;
+    const { taskHead } = this.props.task;
     const task = {
       taskHead:taskHead, 
       // id: newListId, 
@@ -33,7 +33,6 @@ class AddtoCard extends Component {
     }
     this.props.mutate({variables: { 
       taskHead:task.taskHead, 
-      // id: task.id, 
       taskName: task.taskName, 
       isAddMutation: task.isAddMutation  
     }}).then(({data}) => {

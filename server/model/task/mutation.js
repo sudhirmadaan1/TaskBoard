@@ -1,6 +1,6 @@
 export default `
 input addListItems {
-  listId: Int
+  listId: String
   taskName:String!
 }
 
