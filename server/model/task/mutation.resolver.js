@@ -25,6 +25,7 @@ export default {
     },
     AddNewList: (_, args) => {
       return KanBanBoard.create({
+          "userId": args.userId || "Sapient",
           "taskId":v4(),
           "taskHead": args.taskHead
       }, (err,data) => {

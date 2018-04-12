@@ -13,6 +13,7 @@ type Mutation {
   ):TaskBoard
   
   AddNewList(
+   userId: String!
    taskHead: String!
   ):TaskBoard
 

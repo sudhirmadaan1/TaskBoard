@@ -48,7 +48,8 @@ class AppData extends Component {
   }
   addNewList(listVal) {
     const taskHead = listVal;
-    this.props.addList({variables: { taskHead }}).then((list) => {
+    const userId = 'Sapient';
+    this.props.addList({variables: { taskHead, userId }}).then((list) => {
       const _newData = list.data.AddNewList;
       const newObj = {id: _newData.id, taskHead:_newData.taskHead, listItems:[]} 
       this.setState({
@@ -82,8 +83,8 @@ class AppData extends Component {
 }
 
 const GET_TASK_BOARD = gql`
-  query GetTaskBoard {
-    getTaskBoard {
+  query GetTaskBoard($userId: String!) {
+    getTaskBoard(userId: $userId) {
       taskId
       taskHead
       listItems {
@@ -95,8 +96,8 @@ const GET_TASK_BOARD = gql`
 `;
 
 const ADD_LIST = gql`
-  mutation AddNewList($taskHead: String!) {
-    AddNewList(taskHead: $taskHead) {
+  mutation AddNewList($userId: String!, $taskHead: String!) {
+    AddNewList(userId:$userId, taskHead: $taskHead) {
       taskId
       taskHead
     }
@@ -104,6 +105,13 @@ const ADD_LIST = gql`
 `;
 
 export default compose(
-  graphql(GET_TASK_BOARD, {name: 'listData'}),
+  graphql(GET_TASK_BOARD, {
+    name: 'listData',
+    options: (ownProps) => ({
+      variables: {
+        userId: "Sapient"
+      }
+    })
+  }),
   graphql(ADD_LIST, {name: 'addList'})
 )(AppData)

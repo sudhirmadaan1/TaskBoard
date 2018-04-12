@@ -1,5 +1,5 @@
 export default `
 type Query {
-  getTaskBoard: [TaskBoard]
+  getTaskBoard(userId:String!): [TaskBoard]
 }
 `;

@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const KanBanBoard = new Schema({
+  userId:{type: String, required: true},
   taskId:{ type:String, required:true},
   taskHead: {type: String, required: true},
   listItems:[{
