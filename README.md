@@ -1,3 +1,14 @@
+
+
+## Prerequisite
+
+- System should have `Mongodb`
+- `Node` 7+ will work with this app
+
+
+How to set DB path in Mongodb
+`mongod --dbpath /usr/local/var/mongodb/`
+
 # KanBan Board
 
 1.) `npm install || yarn install`
