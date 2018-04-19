@@ -91,7 +91,7 @@ class TaskComponent extends Component {
             isActive={this.props.activeIndex === i} 
             onClick={(e) => { this.props.handleClick(i, e) }}  />
         </div>
-      )};
+      )}
       
 
       {this.props.showAddList && <Fragment>

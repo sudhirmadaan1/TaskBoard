@@ -23,7 +23,6 @@ class AddtoCard extends Component {
     this.setState({
       value:''
     });
-    // const isAddMutation = true;
     const { taskHead } = this.props.task;
     const task = {
       taskHead:taskHead, 
