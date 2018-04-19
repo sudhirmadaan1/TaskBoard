@@ -18,6 +18,7 @@ class AppData extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.updateTask = this.updateTask.bind(this);
     this.addNewList = this.addNewList.bind(this);
+    this.updateData = this.updateData.bind(this);
   }
   componentDidMount() {
     setTimeout(() => {
@@ -45,6 +46,12 @@ class AppData extends Component {
       activeIndex:null,
       list: updatedList
     });
+  }
+  updateData (list) {
+    this.setState({
+      activeIndex:null,
+      list
+    })
   }
   addNewList(listVal) {
     const taskHead = listVal;
@@ -75,6 +82,7 @@ class AppData extends Component {
             handleClick={this.handleClick}
             updateTask={this.updateTask}
             addList={this.addNewList}
+            updateData={this.updateData}
             showAddList={this.state.showAddList}
           />
       )

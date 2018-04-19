@@ -34,6 +34,24 @@ export default {
         }
         return data;
       });
+    },
+    ChangePositionList: (_, args) => {
+      KanBanBoard.findOne({taskHead: args.dragName})
+      .then(task => {
+        KanBanBoard.findOne({taskHead: args.dropList})
+        .then(dropTask => {
+          dropTask.listItems.push(task.listItems[args.dragListIndex]);
+          dropTask.save();
+        })
+      })
+      .catch(err => {throw new Error(err)})
+      .finally(() => {
+        KanBanBoard.update({taskHead: args.dragName}, {$pull: {listItems: {taskName: args.listName}}},
+        { multi: true }
+        ).then(doneOrNot => {
+          console.log(doneOrNot);
+        })
+      });
     }
   }
 }

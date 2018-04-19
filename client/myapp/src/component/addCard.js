@@ -42,7 +42,7 @@ class AddtoCard extends Component {
     });
   }
   render() {
-    const getIndex = this.props.list.findIndex((list) => list.taskId === this.props.task.taskId);
+    const getIndex = this.props.list.findIndex((list) => list.taskHead === this.props.task.taskHead);
     const addUpdatedTask = addNewTaskHelper(this.props.task, this.state.value, getIndex);
     const handleAdd =  partial(this.props.handleAdd, addUpdatedTask);
     return(

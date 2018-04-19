@@ -17,5 +17,12 @@ type Mutation {
    taskHead: String!
   ):TaskBoard
 
+  ChangePositionList(
+    dragName:String!
+    dragListIndex: Int!
+    dropList: String!
+    listName: String!
+  ):TaskBoard
+
 }
 `;
