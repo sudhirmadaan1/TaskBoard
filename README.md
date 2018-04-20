@@ -26,8 +26,13 @@ How to set DB path in Mongodb
 
 
 #Tech Stack being used
+
 1.) React
+
 2.) Apollo Client
+
 3.) Node.js
+
 4.) Graphql
+
 5.) MongoDb
