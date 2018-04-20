@@ -20,6 +20,14 @@ How to set DB path in Mongodb
 
 4.) User can Add a list by using `Add a list...` button. User can add multiple task by using `Add a list button`
 
-5.) User can Add new task and Edit by using Dialog box.
+5.) User can `Add new task` and `Edit` by using Dialog box.
 
-6.) User Can drag and drop task within their added list.
+6.) User can `Drag` and `Drop` task within their added list.
+
+
+#Tech Stack being used
+1.) React
+2.) Apollo Client
+3.) Node.js
+4.) Graphql
+5.) MongoDb
