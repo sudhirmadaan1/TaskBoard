@@ -2,9 +2,10 @@
 
 ## Prerequisite
 
+- App is created using CreateReactApp. To start with; use `npm install create-react-app`. 
+- Concurrent module is being used for server start. `npm install -g concurrently`
 - System should have `Mongodb`
 - `Node` 7+ will work with this app
-
 
 How to set DB path in Mongodb
 `mongod --dbpath /usr/local/var/mongodb/`
