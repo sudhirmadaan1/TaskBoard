@@ -25,7 +25,7 @@ How to set DB path in Mongodb
 6.) User can `Drag` and `Drop` task within their added list.
 
 
-#Tech Stack being used
+# Tech Stack being used
 
 1.) React
 
