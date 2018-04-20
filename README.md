@@ -17,6 +17,8 @@ How to set DB path in Mongodb
 
 3.) On root, run `yarn run dev`. It runs concurrently client and backend node server. 
 
-4.) User can Add a list by using `Add a list...` button
+4.) User can Add a list by using `Add a list...` button. User can add multiple task by using `Add a list button`
 
-5) User can Add new task and Edit by using Dialog
+5) User can Add new task and Edit by using Dialog box. 
+
+6) User Can drag and drop task within their added list.
